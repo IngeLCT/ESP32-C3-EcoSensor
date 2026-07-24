@@ -21,14 +21,15 @@
 
 static const char *TAG = "EcoSensor";
 
-static const char *MDNS_HOSTNAME = "ecosensorc3";
-static const char *AP_SSID = "EcoSensor-C3";
-static const char *AP_PASS = "LCTECOC3";
+static const char *MDNS_HOSTNAME = "ecosensor04";
+static const char *AP_SSID = "EcoSensor04";
+static const char *AP_PASS = "LCTECO04";
 
 // Offset EcoSensor01: SCD40 = 7.70 SEN55 = -3.02
 // Offset EcoSensor02: SCD40 = 7.70 SEN55 = -3.02
-// Offset EcoSensor03: SCD40 calibrado; SEN55 conserva su compensación calibrada.
-const float ECO_SCD40_TEMP_OFFSET_C = 5.7f;
+// EcoSensor04 inicia con el offset predeterminado de fábrica del SCD40.
+// El SEN55 conserva la compensación usada por los demás EcoSensor.
+const float ECO_SCD40_TEMP_OFFSET_C = 4.0f;
 const float ECO_SEN55_TEMP_OFFSET_C = -3.02f;
 
 #define LOG_EACH_SAMPLE          0

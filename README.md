@@ -56,12 +56,19 @@ cableado y la tarjeta.
 
 ## Identidad inicial
 
-- mDNS: `ecosensorc3.local`
-- AP temporal: `EcoSensor-C3`
+- Dispositivo: `EcoSensor04`
+- mDNS: `ecosensor04.local`
+- AP temporal: `EcoSensor04`
+- Contraseña del AP: `LCTECO04`
 - Versión inicial: `1.0.0`
 
-Estos valores deben ajustarse antes de desplegar varias unidades para evitar
-colisiones de nombre en la red.
+## Compensación inicial de temperatura
+
+- SCD40: `4.0 °C`, valor predeterminado de fábrica de la familia SCD4x.
+- SEN55: `-3.02 °C`, igual que los demás EcoSensor.
+
+El offset SCD40 deberá calibrarse después de instalar el sensor en su gabinete
+definitivo y alcanzar equilibrio térmico.
 
 ## OTA local
 
