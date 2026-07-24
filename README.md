@@ -140,17 +140,46 @@ Está habilitado `CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE=y`. En el primer arranqu
 
 La OTA corre en una tarea separada y evita múltiples actualizaciones simultáneas. No se detienen sensores ni SD por defecto para no romper la arquitectura actual; la escritura OTA usa particiones flash separadas. Si más adelante se observa contención, se puede agregar una pausa explícita de sensores durante `downloading/writing`.
 
-## Compilar
+## Compilar después de clonar
 
-```bash
-source /home/eduardo/tools/esp-idf/export.sh
+El proyecto fue validado con ESP-IDF `5.5.1`. No depende de una ruta local
+específica: debe compilarse desde una terminal donde el entorno de ESP-IDF ya
+esté cargado.
+
+### Windows
+
+Abra **ESP-IDF 5.5 PowerShell**, **ESP-IDF 5.5 Command Prompt** o una terminal
+ESP-IDF desde la extensión oficial de Visual Studio Code. Después:
+
+```powershell
+cd C:\ruta\al\proyecto\ESP32-C3-EcoSensor
+idf.py set-target esp32c3
 idf.py build
 ```
 
-Para la primera migración por USB con OTA:
+No es necesario ejecutar `export.sh` en Windows. El acceso directo instalado
+por Espressif prepara automáticamente Python, CMake, Ninja y las herramientas
+del compilador.
+
+### Linux o macOS
+
+Con ESP-IDF instalado y `IDF_PATH` definido:
 
 ```bash
-idf.py flash
+. "$IDF_PATH/export.sh"
+cd /ruta/al/proyecto/ESP32-C3-EcoSensor
+idf.py set-target esp32c3
+idf.py build
+```
+
+`idf.py set-target esp32c3` solo es necesario al crear o regenerar
+`sdkconfig`; puede repetirse de forma segura después de una clonación limpia.
+
+Para la primera migración por USB con OTA:
+
+```text
+Windows: idf.py -p COMx flash monitor
+Linux:   idf.py -p /dev/ttyUSB0 flash monitor
 ```
 
 O manualmente con los offsets reportados por ESP-IDF:
