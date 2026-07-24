@@ -70,6 +70,16 @@ cableado y la tarjeta.
 El offset SCD40 deberá calibrarse después de instalar el sensor en su gabinete
 definitivo y alcanzar equilibrio térmico.
 
+## Destino de mediciones push
+
+Al arrancar, el firmware usa `ecosensor.local` y el puerto HTTP `80`. Cuando
+`Ecosensor-Servidor-Distribucion` detecta EcoSensor04, envía `push_host` y
+`push_port` mediante `POST /time` o `POST /config`. El ESP32 valida el puerto y
+usa el destino recibido para `POST /api/measurements/push`.
+
+El host y el puerto permanecen únicamente en RAM porque pueden cambiar cada vez
+que inicia el servidor. `GET /status` expone ambos valores para diagnóstico.
+
 ## OTA local
 
 Esta versión usa tabla de particiones OTA para flash de 4 MB:
